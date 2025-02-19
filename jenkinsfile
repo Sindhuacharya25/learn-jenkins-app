@@ -7,7 +7,7 @@ pipeline {
                 script {
                     docker.image('alpine').inside {
                         sh 'echo "Running inside Docker container"'
-                    reuseNode true
+                    
                 }
             }
             steps {
