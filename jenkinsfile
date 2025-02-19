@@ -1,26 +1,24 @@
 pipeline {
     agent any
-
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
-                script {
-                    docker.image('alpine').inside {
-                        sh 'echo "Running inside Docker container"'
-                    
-                }
+                echo 'Building the application...'
+                sh 'npm install'
+                sh 'npm run build'
             }
+        }
+        stage('Test') {
             steps {
-                sh '''
-                    ls -la
-                    node --version
-                    npm --version
-                    npm ci
-                    npm run build
-                    ls -la
-               '''
+                echo 'Running tests...'
+                sh 'npm test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the application...'
+                sh 'npm run deploy'
             }
         }
     }
-}
 }
