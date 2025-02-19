@@ -1,6 +1,12 @@
 pipeline {
     agent any
     stages {
+        stage('Verify Node.js') {
+            steps {
+                sh 'node -v'
+                sh 'npm -v'
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building the application...'
@@ -19,14 +25,6 @@ pipeline {
                 echo 'Deploying the application...'
                 sh 'npm run deploy'
             }
-            stage('Verify Node.js') {
-    steps {
-        sh 'node -v'
-        sh 'npm -v'
-    }
-}
-
-}
-
         }
     }
+}
