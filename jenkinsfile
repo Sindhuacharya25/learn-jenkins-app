@@ -3,9 +3,10 @@ pipeline {
 
     stages {
         stage('build') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
+            steps {
+                script {
+                    docker.image('alpine').inside {
+                        sh 'echo "Running inside Docker container"'
                     reuseNode true
                 }
             }
