@@ -19,8 +19,13 @@ pipeline {
                 echo 'Deploying the application...'
                 sh 'npm run deploy'
             }
-            environment {
-    PATH = "/usr/bin:$PATH"
+            stage('Verify Node.js') {
+    steps {
+        sh 'node -v'
+        sh 'npm -v'
+    }
+}
+
 }
 
         }
