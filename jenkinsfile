@@ -19,6 +19,10 @@ pipeline {
                 echo 'Deploying the application...'
                 sh 'npm run deploy'
             }
+            environment {
+    PATH = "/usr/bin:$PATH"
+}
+
         }
     }
 }
